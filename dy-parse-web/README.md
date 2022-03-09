@@ -1,24 +1,14 @@
-# dy-parse
+# dy-parse-web
 
-## Project setup
+### 构建
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动服务
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+npm run dev
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
