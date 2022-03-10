@@ -3,7 +3,8 @@
 
 ### python版本请看
 
-[douyin-parse]: (https://github.com/JCCGG/DouYin-Parse)
+[douyin-parse](https://github.com/JCCGG/DouYin-Parse)
 
 ### Demo
-[抖音解析]: (http://dy.wwdab.cn)
+[抖音解析](http://dy.wwdab.cn)
+
