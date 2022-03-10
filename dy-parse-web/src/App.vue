@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <t-button>test</t-button> -->
     <dyComponent ></dyComponent>
   </div>
 </template>
@@ -11,6 +10,9 @@ export default {
   name: 'App',
   components: {
    dyComponent
+  },
+  mounted:()=>{
+    document.title="抖音无水印视频解析！"
   }
 }
 </script>
