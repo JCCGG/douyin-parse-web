@@ -23,7 +23,7 @@ public class OkHttpConfiguration {
         return new OkHttpClient.Builder()
                 .connectionPool(new ConnectionPool(200,5, TimeUnit.MINUTES))
                 .followRedirects(false)
-                .proxy(new Proxy(Proxy.Type.HTTP,new InetSocketAddress("127.0.0.1",10809)))
+//                .proxy(new Proxy(Proxy.Type.HTTP,new InetSocketAddress("127.0.0.1",10809)))
                 .build();
     }
 }
