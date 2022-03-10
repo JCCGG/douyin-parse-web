@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const request=axios.create({
-    baseURL:'http://dy.wwdab.cn',
+    baseURL:'http://localhost:9099',
     timeout:15000,
 
     headers:{
