@@ -4,6 +4,9 @@ import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -19,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class OkHttpConfiguration {
     @Bean
+    @SessionScope
     public OkHttpClient okHttpClient(){
         return new OkHttpClient.Builder()
                 .connectionPool(new ConnectionPool(200,5, TimeUnit.MINUTES))

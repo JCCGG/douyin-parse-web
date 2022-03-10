@@ -5,7 +5,9 @@ import cn.jcc.dy.pojo.vo.ResultData;
 import cn.jcc.dy.sdk.DyClient;
 import cn.jcc.dy.service.DyClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.net.SocketException;
 import java.util.regex.Matcher;
@@ -19,11 +21,13 @@ import java.util.regex.Pattern;
  **/
 
 @Service
+@SessionScope
 public class DyClientServiceImpl implements DyClientService {
     @Autowired
     private DyClient dyClient;
     @Override
     public ResultData<VideoInfo> getVideoInfo(String urlText) {
+        System.out.println(dyClient);
         ResultData<VideoInfo> videoInfoResultData = new ResultData<>();
         if ("".equals(urlText)||urlText==null){
             videoInfoResultData.setMsg("输入的地址不能为空！");

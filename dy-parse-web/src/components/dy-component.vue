@@ -2,10 +2,10 @@
     <div>
         <t-layout>
             <t-content class="content">
-                <t-alert theme="success" message="当前仅支持抖音水印视频，背景音乐，封面解析！"></t-alert>
+                <t-alert theme="success" message="当前仅支持抖音无水印视频，背景音乐，封面解析！"></t-alert>
                 <t-row  style="margin-top:10px;">
                     <t-col flex="auto">
-                        <t-input size="large" v-model="url"/>
+                        <t-input size="large" autoWidth v-model="url"/>
                     </t-col>
                     <t-col flex="none" >
                         <t-button size="large" @click="onBtnParse" :loading="isLoad">解析</t-button>
@@ -57,6 +57,7 @@ export default {
         LogoGithubFilledIcon
     },
     mounted:function(){
+
     },
     methods:{
         onBtnParse:function(){
@@ -75,11 +76,16 @@ export default {
                 if(res.data.code==0){
                     that.videoUrl=res.data.data.vedioUrl
                     that.music=res.data.data.music
+                    that.bgImage=res.data.data.bgImage
                     that.msgShow=true
+                    that.showSuccessMsg(res.data.msg)
+                }else{
+                    that.showWarningsMsg(res.data.msg)
                 }
                 that.isLoad=false;
             }).catch(function(err){
                 console.log('出错了：'+err)
+                that.showErroringsMsg("网络异常！")
                 that.isLoad=false;
             })
            
@@ -87,6 +93,27 @@ export default {
         onOpenGithub:function(){
             this.opurl=true;
             window.location.href="https://github.com/JCCGG/DouYin-Parse";
+        },
+        showSuccessMsg(msg){
+            this.$message.success({
+            content: msg,
+            duration: 3000,
+            zIndex: 1001,
+            });
+        },
+        showWarningsMsg(msg){
+            this.$message.warning({
+            content: msg,
+            duration: 3000,
+            zIndex: 1001,
+            });
+        },
+         showErroringsMsg(msg){
+            this.$message.error({
+            content: msg,
+            duration: 3000,
+            zIndex: 1001,
+            });
         }
     }
 }
