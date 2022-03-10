@@ -62,15 +62,29 @@ public class DyClient {
             System.out.println(response.code());
             if(response.code()==200){
                 String jsonStr = response.body().string();
-//                System.out.println(jsonStr);
+                System.out.println(jsonStr);
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonNode = mapper.readTree(jsonStr);
                 if(jsonNode.get("status_code").asInt()==0){
 //                    请求接口成功！
                     this.vid = jsonNode.get("item_list").get(0).get("video").get("vid").asText();
                     this.music=jsonNode.get("item_list").get(0).get("music").get("play_url").get("uri").asText();
-//                    String  originBgImageLIst= jsonNode.get("item_list").get("video").get("origin_cover").get("url_list");
-//                    jsonNode.get("item_list").get("video").get("origin_cover").get("url_list").withArray("")
+                    JsonNode originCover = jsonNode.get("item_list").get(0).get("video").get("origin_cover").get("url_list");
+                    JsonNode cover = jsonNode.get("item_list").get(0).get("video").get("origin_cover").get("url_list");
+
+                    if(originCover!=null&&originCover.isArray()){
+                        for(JsonNode originCoverUrl:originCover){
+                            System.out.println(originCoverUrl);
+                            this.bgImage=originCoverUrl.asText();
+                            break;
+                        }
+                    }else if(cover!=null&&cover.isArray()){
+                        for(JsonNode coverUrl:cover){
+                            System.out.println(coverUrl);
+                            this.bgImage=coverUrl.asText();
+                            break;
+                        }
+                    }
 //                  获取视频封面
                     return true;
                 }
