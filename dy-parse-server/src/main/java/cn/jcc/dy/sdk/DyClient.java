@@ -43,6 +43,7 @@ public class DyClient {
         Response response = okHttpClient.newCall(request).execute();
         String logUrl = response.header("Location");
         System.out.println(logUrl);
+        response.close();
         return logUrl;
 
     }
@@ -62,7 +63,7 @@ public class DyClient {
             System.out.println(response.code());
             if(response.code()==200){
                 String jsonStr = response.body().string();
-                System.out.println(jsonStr);
+//                System.out.println(jsonStr);
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonNode = mapper.readTree(jsonStr);
                 if(jsonNode.get("status_code").asInt()==0){
@@ -89,6 +90,7 @@ public class DyClient {
                     return true;
                 }
             }
+            response.close();
         }else{
             throw new NullPointerException("获取视频ID异常！");
         }
@@ -107,6 +109,7 @@ public class DyClient {
             String realUrl = response.header("Location");
             this.videoRealUrl=realUrl;
             System.out.println(realUrl);
+            response.close();
             return this.getVideoInfo();
         }else{
             throw new Exception("获取视频信息异常！");
