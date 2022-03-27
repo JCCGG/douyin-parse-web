@@ -32,6 +32,7 @@ public class DyClient {
     private String music="";
     private String videoRealUrl="";
     private String bgImage="";
+    private String shareUrl="";
 
     //    根据短连接获取长连接
     private String getLongUrl(String url) throws IOException {
@@ -75,13 +76,13 @@ public class DyClient {
 
                     if(originCover!=null&&originCover.isArray()){
                         for(JsonNode originCoverUrl:originCover){
-                            System.out.println(originCoverUrl);
+//                            System.out.println(originCoverUrl);
                             this.bgImage=originCoverUrl.asText();
                             break;
                         }
                     }else if(cover!=null&&cover.isArray()){
                         for(JsonNode coverUrl:cover){
-                            System.out.println(coverUrl);
+//                            System.out.println(coverUrl);
                             this.bgImage=coverUrl.asText();
                             break;
                         }
@@ -100,9 +101,11 @@ public class DyClient {
 //获取真实地址
     public VideoInfo getRealVedioUrl(String url) throws Exception {
         if(this.getVideoApiInfo(url)){
+            String sUrl=this.vedioUrl + this.vid + "&ratio=720p&line=0";
+            System.out.println(sUrl);
             Request request = new Request.Builder()
                     .get()
-                    .url(this.vedioUrl + this.vid + "&ratio=720p&line=0")
+                    .url(sUrl)
                     .build();
 
             Response response = this.okHttpClient.newCall(request).execute();
@@ -110,6 +113,7 @@ public class DyClient {
             this.videoRealUrl=realUrl;
             System.out.println(realUrl);
             response.close();
+            this.shareUrl=sUrl;
             return this.getVideoInfo();
         }else{
             throw new Exception("获取视频信息异常！");
@@ -121,6 +125,7 @@ public class DyClient {
         this.videoInfo.setBgImage(this.bgImage);
         this.videoInfo.setMusic(this.music);
         this.videoInfo.setVedioUrl(this.videoRealUrl);
+        this.videoInfo.setShareUrl(this.shareUrl);
         return this.videoInfo;
     }
 

@@ -2,7 +2,8 @@ import axios from 'axios';
 import qs from 'qs';
 
 const request=axios.create({
-    baseURL:'http://localhost:9099',
+
+    baseURL:'http://localhost:9099/dy',
     timeout:15000,
 
     headers:{

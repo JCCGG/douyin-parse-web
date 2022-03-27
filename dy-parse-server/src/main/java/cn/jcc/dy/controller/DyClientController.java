@@ -21,7 +21,7 @@ import org.springframework.web.context.annotation.SessionScope;
 public class DyClientController {
     @Autowired
     private DyClientService dyClientService;
-    @PostMapping("/videoInfo")
+    @PostMapping("dy/videoInfo")
     @ResponseBody
     public ResultData<VideoInfo> getVideoInfo(@RequestParam(name="urlText") String urlText){
         return dyClientService.getVideoInfo(urlText);

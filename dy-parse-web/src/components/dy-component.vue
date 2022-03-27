@@ -3,15 +3,18 @@
         <t-layout>
             <t-content class="content">
                 <t-alert theme="success" message="当前仅支持抖音无水印视频，背景音乐，封面解析！"></t-alert>
+                <t-alert theme="error" style="margin-top:5px;" message="解析出来的视频下载链接有时效性，大概一个小时会过期！"></t-alert>
                 <t-row  style="margin-top:10px;">
                     <t-col flex="auto">
-                        <t-input size="large" autoWidth v-model="url"/>
+                        <t-input placeholder="输入分享的抖音视频连接" size="large" autoWidth v-model="url"/>
                     </t-col>
                     <t-col flex="none" >
                         <t-button size="large" @click="onBtnParse" :loading="isLoad">解析</t-button>
                     </t-col>
                 </t-row>
-                <t-divider align="left" >视频链接：</t-divider>
+                <t-divider align="left" >视频分享链接：</t-divider>
+                <t-textarea  v-bind:value="shareUrl" :autosize="{minRows:2}" readonly />
+                <t-divider align="left" >视频下载链接：</t-divider>
                 <t-textarea status="success" v-bind:value="videoUrl" :autosize="{minRows:5}" readonly />
                 <t-divider align="left" >BGM链接：</t-divider>
                 <t-textarea status="warning" :value="music" :autosize="{minRows:2}" readonly />
@@ -47,6 +50,7 @@ export default {
             videoUrl:"",
             music:"",
             bgImage:"",
+            shareUrl:"",
             opurl:false,
             isLoad:false,
             url:"",
@@ -77,6 +81,7 @@ export default {
                     that.videoUrl=res.data.data.vedioUrl
                     that.music=res.data.data.music
                     that.bgImage=res.data.data.bgImage
+                    that.shareUrl=res.data.data.shareUrl
                     that.msgShow=true
                     that.showSuccessMsg(res.data.msg)
                 }else{

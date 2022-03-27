@@ -4,6 +4,7 @@ public class VideoInfo {
     private String music;
     private String vedioUrl;
     private String bgImage;
+    private String shareUrl;
 
     @Override
     public String toString() {
@@ -11,7 +12,16 @@ public class VideoInfo {
                 "music='" + music + '\'' +
                 ", vedioUrl='" + vedioUrl + '\'' +
                 ", bgImage='" + bgImage + '\'' +
+                ", shareUrl='" + shareUrl + '\'' +
                 '}';
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
     }
 
     public String getMusic() {
