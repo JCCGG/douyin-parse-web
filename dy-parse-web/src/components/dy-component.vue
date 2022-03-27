@@ -13,13 +13,13 @@
                     </t-col>
                 </t-row>
                 <t-divider align="left" >视频分享链接：</t-divider>
-                <t-textarea  v-bind:value="shareUrl" :autosize="{minRows:2}" readonly />
+                <t-textarea  v-bind:value="shareUrl" :autosize="{minRows:2}" readonly @focus="onFocusCopy" />
                 <t-divider align="left" >视频下载链接：</t-divider>
-                <t-textarea status="success" v-bind:value="videoUrl" :autosize="{minRows:5}" readonly />
+                <t-textarea status="success" v-bind:value="videoUrl" :autosize="{minRows:5}" readonly @focus="onFocusCopy" />
                 <t-divider align="left" >BGM链接：</t-divider>
-                <t-textarea status="warning" :value="music" :autosize="{minRows:2}" readonly />
+                <t-textarea status="warning" :value="music" :autosize="{minRows:2}" readonly @focus="onFocusCopy"/>
                 <t-divider align="left" >封面链接：</t-divider>
-                <t-textarea status="error" :value="bgImage" :autosize="{minRows:3}" readonly />
+                <t-textarea status="error" :value="bgImage" :autosize="{minRows:3}" readonly @focus="onFocusCopy"/>
 
             </t-content>
             <t-footer align="center">
@@ -64,6 +64,20 @@ export default {
 
     },
     methods:{
+        // 点击复制
+        onFocusCopy(v){
+            const that=this
+            if(v){
+                that.$copyText(v).then(
+                    function () {
+                        that.showSuccessMsg("复制成功！")
+                        }, 
+                    function (e) {
+                        that.showErroringsMsg("复制出错："+e)
+                        }
+                )
+            }
+        },
         onBtnParse:function(){
             const that=this;
             this.isLoad=true;

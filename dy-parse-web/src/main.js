@@ -3,6 +3,9 @@ import App from './App.vue'
 // import TDesign from 'tdesign-vue'
 import { Button,Layout,Content, Footer,Alert,Divider,Textarea,Tooltip,Input,MessagePlugin,Loading,Icon,Col,Row} from 'tdesign-vue'
 import 'tdesign-vue/es/style/index.css'
+import VueClipboard from 'vue-clipboard2'
+VueClipboard.config.autoSetContainer = true
+Vue.use(VueClipboard)
 
 // Vue.use(TDesign)
 Vue.use(Button)
