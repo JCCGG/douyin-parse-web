@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    <dyComponent ></dyComponent>
+    <main-page/>
   </div>
 </template>
 
 <script>
-import dyComponent from './components/dy-component.vue'
+import MainPage from './components/MainPage.vue'
 export default {
   name: 'App',
   components: {
-   dyComponent
+   MainPage
   },
   mounted:()=>{
-    document.title="抖音无水印视频解析！"
   }
 }
 </script>

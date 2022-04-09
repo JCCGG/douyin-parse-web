@@ -44,7 +44,7 @@
 import request from '@/utils/request'
 import {LogoGithubFilledIcon} from 'tdesign-icons-vue';
 export default {
-    name:'AxiosTest',
+    name:'MainPage',
     data:function(){
         return {
             videoUrl:"",
